@@ -1,0 +1,210 @@
+```{r}
+https://https://github.com/yhomar-fran/metodologia/raw/refs/heads/main/metodologia.ipynb
+https://github.com/yhomar-fran/metodologia/raw/refs/heads/main/metodologia.ipynb
+"https://github.com/yhomar-fran/metodologia/raw/refs/heads/main/metodologia.ipynb"
+head(datos)
+"https://github.com/yhomar-fran/metodologia/raw/refs/heads/main/tabla_merge.xls"
+head(datos)
+"https://github.com/yhomar-fran/metodologia/raw/refs/heads/main/tabla_merg.csv.xls"
+head(datos)
+# Instalar y cargar paquetes si no están
+if (!require("readr")) install.packages("readr")
+library(readr)
+# URL del archivo (aunque el nombre diga .xls, lo trataremos como CSV)
+url <- "https://github.com/yhomar-fran/metodologia/raw/refs/heads/main/tabla_merg.csv.xls"
+# Leer el archivo como CSV
+datos <- read_csv(url)
+# Verificar que se haya cargado correctamente
+head(datos)
+datos_2020 <- subset(datos, anio == 2020)
+# Correlación entre variables numéricas
+correlacion_2020 <- cor(datos_2020[, c("victimizacion", "percepcion", "robo", "efectivos", "confianza")], method = "pearson")
+# Mostrar correlación con la confianza
+correlacion_2020[, "confianza"]
+# Ajustar modelo de regresión
+modelo_2020 <- lm(confianza ~ victimizacion + percepcion + robo + efectivos, data = datos_2020)
+# Mostrar resultados
+summary(modelo_2020)
+datos_2021 <- subset(datos, anio == 2021)
+>
+datos_2021 <- subset(datos, anio == 2021)
+>
+datos_2021 <- subset(datos, anio == 2021)
+correlacion_2021 <- cor(datos_2021[, c("victimizacion", "percepcion", "robo", "efectivos", "confianza")], method = "pearson")
+correlacion_2021[, "confianza"]
+modelo_2021 <- lm(confianza ~ victimizacion + percepcion + robo + efectivos, data = datos_2021)
+summary(modelo_2021)
+datos_2022 <- subset(datos, anio == 2022)
+# Correlación 2022
+correlacion_2022 <- cor(datos_2022[, c("victimizacion", "percepcion", "robo", "efectivos", "confianza")], method = "pearson")
+correlacion_2022[, "confianza"]
+# Modelo de regresion de 2022
+modelo_2022 <- lm(confianza ~ victimizacion + percepcion + robo + efectivos, data = datos_2022)
+summary(modelo_2022)
+datos_2023 <- subset(datos, anio == 2023)
+correlacion_2023 <- cor(datos_2023[, c("victimizacion", "percepcion", "robo", "efectivos", "confianza")], method = "pearson")
+correlacion_2023[, "confianza"]
+#regresion del año 2023
+modelo_2023 <- lm(confianza ~ victimizacion + percepcion + robo + efectivos, data = datos_2023)
+summary(modelo_2023)
+if (!require("ggplot2")) install.packages("ggplot2")
+library(ggplot2)
+ggplot(datos_2019, aes(x = victimizacion, y = confianza)) +
+geom_point(color = "#2c3e50", size = 3) +
+geom_smooth(method = "lm", se = FALSE, color = "red") +
+labs(
+title = "Relación entre Victimización y Confianza en la Policía (2019)",
+x = "Victimización (%)",
+y = "Confianza en la PNP (%)"
+) +
+theme_minimal()
+datos_2019 <- subset(datos, anio == 2019)
+datos_2020 <- subset(datos, anio == 2020)
+datos_2021 <- subset(datos, anio == 2021)
+datos_2022 <- subset(datos, anio == 2022)
+datos_2023 <- subset(datos, anio == 2023)
+library(ggplot2)
+ggplot(datos_2019, aes(x = victimizacion, y = confianza)) +
+geom_point(color = "#2c3e50", size = 3) +
+geom_smooth(method = "lm", se = FALSE, color = "red") +
+labs(
+title = "Relación entre Victimización y Confianza en la Policía (2019)",
+x = "Victimización (%)",
+y = "Confianza en la PNP (%)"
+) +
+theme_minimal()
+# Instalar y cargar ggplot2 si no lo tienes
+if (!require("ggplot2")) install.packages("ggplot2")
+library(ggplot2)
+# Filtrar los datos por año
+datos_2019 <- subset(datos, anio == 2019)
+datos_2020 <- subset(datos, anio == 2020)
+datos_2021 <- subset(datos, anio == 2021)
+datos_2022 <- subset(datos, anio == 2022)
+datos_2023 <- subset(datos, anio == 2023)
+# Lista de años y datos
+anios <- list(
+"2019" = datos_2019,
+"2020" = datos_2020,
+"2021" = datos_2021,
+"2022" = datos_2022,
+"2023" = datos_2023
+)
+# Generar y guardar gráficos
+for (anio in names(anios)) {
+df <- anios[[anio]]
+p <- ggplot(df, aes(x = victimizacion, y = confianza)) +
+geom_point(color = "#2c3e50", size = 3) +
+geom_smooth(method = "lm", se = FALSE, color = "red") +
+labs(
+title = paste("Relación entre Victimización y Confianza (", anio, ")", sep = ""),
+x = "Victimización (%)",
+y = "Confianza en la PNP (%)"
+) +
+theme_minimal()
+print(p)  # Mostrar en pantalla
+ggsave(filename = paste0("victimizacion_confianza_", anio, ".png"), plot = p, width = 7, height = 5)
+}
+getwd()
+# Instalar y cargar ggplot2 si no está cargado
+if (!require("ggplot2")) install.packages("ggplot2")
+library(ggplot2)
+# 1. Crear subconjuntos por año
+datos_2019 <- subset(datos, anio == 2019)
+datos_2020 <- subset(datos, anio == 2020)
+datos_2021 <- subset(datos, anio == 2021)
+datos_2022 <- subset(datos, anio == 2022)
+datos_2023 <- subset(datos, anio == 2023)
+# 2. Crear lista de dataframes por año
+anios <- list(
+"2019" = datos_2019,
+"2020" = datos_2020,
+"2021" = datos_2021,
+"2022" = datos_2022,
+"2023" = datos_2023
+)
+# 3. Variables independientes a graficar
+variables <- c("victimizacion", "percepcion", "robo", "efectivos")
+# 4. Generar y guardar todas las gráficas
+for (anio in names(anios)) {
+df <- anios[[anio]]
+for (var in variables) {
+p <- ggplot(df, aes_string(x = var, y = "confianza")) +
+geom_point(color = "#2c3e50", size = 3) +
+geom_smooth(method = "lm", se = FALSE, color = "red") +
+labs(
+title = paste("Relación entre", var, "y confianza (", anio, ")", sep = " "),
+x = paste(toupper(substring(var, 1, 1)), substring(var, 2), "(%)", sep = ""),
+y = "Confianza en la PNP (%)"
+) +
+theme_minimal()
+# Guardar gráfico
+filename <- paste0(var, "_confianza_", anio, ".png")
+ggsave(filename = filename, plot = p, width = 7, height = 5)
+}
+}
+# Instalar y cargar ggplot2 si no está
+if (!require("ggplot2")) install.packages("ggplot2")
+library(ggplot2)
+# Crear subconjuntos por año
+datos_2019 <- subset(datos, anio == 2019)
+datos_2020 <- subset(datos, anio == 2020)
+datos_2021 <- subset(datos, anio == 2021)
+datos_2022 <- subset(datos, anio == 2022)
+datos_2023 <- subset(datos, anio == 2023)
+# Lista de dataframes por año
+anios <- list(
+"2019" = datos_2019,
+"2020" = datos_2020,
+"2021" = datos_2021,
+"2022" = datos_2022,
+"2023" = datos_2023
+)
+# Variables a graficar
+variables <- c("victimizacion", "percepcion", "robo", "efectivos")
+# Crear y guardar las gráficas
+for (anio in names(anios)) {
+df <- anios[[anio]]
+for (var in variables) {
+p <- ggplot(df, aes(x = .data[[var]], y = confianza)) +
+geom_point(color = "#2c3e50", size = 3) +
+geom_smooth(method = "lm", se = FALSE, color = "red") +
+labs(
+title = paste("Relación entre", var, "y confianza (", anio, ")", sep = " "),
+x = paste(toupper(substring(var, 1, 1)), substring(var, 2), "(%)", sep = ""),
+y = "Confianza en la PNP (%)"
+) +
+theme_minimal()
+# Guardar gráfico
+filename <- paste0(var, "_confianza_", anio, ".png")
+ggsave(filename = filename, plot = p, width = 7, height = 5)
+}
+}
+datos_2019 <- subset(datos, anio == 2019)
+correlacion_2019 <- cor(datos_2019[, c("victimizacion", "percepcion", "robo", "efectivos", "confianza")], method = "pearson")
+correlacion_2019[, "confianza"]
+#regresion lineal de 2019
+modelo_2019 <- lm(confianza ~ victimizacion + percepcion + robo + efectivos, data = datos_2019)
+summary(modelo_2019)
+#opcional pero es del 2019
+library(ggplot2)
+variables <- c("victimizacion", "percepcion", "robo", "efectivos")
+for (var in variables) {
+p <- ggplot(datos_2019, aes(x = .data[[var]], y = confianza)) +
+geom_point(color = "#2c3e50", size = 3) +
+geom_smooth(method = "lm", se = FALSE, color = "red") +
+labs(
+title = paste("Relación entre", var, "y confianza (2019)"),
+x = paste(toupper(substring(var, 1, 1)), substring(var, 2), "(%)"),
+y = "Confianza en la PNP (%)"
+) +
+theme_minimal()
+# Guardar imagen
+ggsave(paste0(var, "_confianza_2019.png"), plot = p, width = 7, height = 5)
+}
+if (!require("ggplot2")) install.packages("ggplot2")
+library(ggplot2)
+#regresion lineal de 2019
+> modelo_2019 <- lm(confianza ~ victimizacion + percepcion + efectivos, data = datos_2019)
+```
+
